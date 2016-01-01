@@ -1,0 +1,33 @@
+
+
+
+参考：https://www.embbnux.com/2014/08/10/raspberry_use_spi_oled_screen_python_c/,
+https://github.com/imccie/raspberrypi_oleds,
+https://github.com/liuzheng712/raspberrypi_oleds
+
+GND接树莓派的GND, VCC接树莓派的3v3 POWER口，就是电源口，不要接到5V
+
+CS是spi的片选口，可以多组spi同时使用，这里接树莓派的GPIO8(CE0)口，第24个管脚
+
+DC口是数据与命令选择口，这里接到第13管脚，对于R1版本的树莓派就是GPIO21，我的是R2版本的，对应的是GPIO27
+
+RST是复位口，这里接到GPIO17也就是11管脚
+
+D1(MOSI)口，接到树莓派的GPIO10(MOSI)口，也就是21管脚
+
+D0(SCLK)口，接到树莓派的GPIO11(SCLK)口，也就是23管脚
+
+(2) 打开树莓派的spi口
+
+树莓派默认的spi和i2c口都是被禁用的，使用之前必须先打开
+
+首先是ssh登陆到树莓派上：
+
+    vi /etc/modprobe.d/raspi-blacklist.conf
+    #blacklist spi-bcm2708 ＃使用井号注释掉这行
+    blacklist i2c-bcm2708  #如果要使用i2c就注释掉这行
+               
+                      
+                       
+
+
